@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family={{fontHeadline}}:wght@400;700&family={{fontBody}}:wght@400;500;600&family={{fontSmall}}:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: #1A1A1A;
+    font-family: '{{fontBody}}', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Radial sunburst glow */
+  .sunburst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    background: radial-gradient(circle, rgba(232, 101, 43, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Top bar area */
+  .top-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 56px 0;
+  }
+  .handle-top {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 18px;
+    color: #666666;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  /* Title bar — pill-shaped gradient */
+  .title-bar {
+    position: relative;
+    z-index: 1;
+    margin: 28px 56px 0;
+    padding: 18px 40px;
+    border-radius: 60px;
+    background: linear-gradient(135deg, #E8652B, #FFB37A);
+    display: inline-block;
+  }
+  .title-text {
+    font-family: '{{fontHeadline}}', sans-serif;
+    font-weight: 400;
+    font-size: 42px;
+    color: #1A1A1A;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  /* Body card */
+  .body-card {
+    position: relative;
+    z-index: 1;
+    margin: 32px 56px;
+    background: #0F0F0F;
+    border-radius: 24px;
+    padding: 56px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    overflow: hidden;
+  }
+  /* Section styles */
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .section-label {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 24px;
+    color: #E8652B;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  .section-body {
+    font-family: '{{fontBody}}', sans-serif;
+    font-size: 28px;
+    color: #FFFFFF;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .section-body.steps-list,
+  .section-body.rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step-item,
+  .rule-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    line-height: 1.45;
+  }
+  .step-num {
+    color: #E8652B;
+    font-weight: 600;
+    min-width: 28px;
+    font-size: 28px;
+  }
+  .step-text,
+  .rule-text {
+    color: #FFFFFF;
+    font-size: 28px;
+  }
+  .rule-bullet {
+    color: #E8652B;
+    min-width: 20px;
+    font-size: 28px;
+  }
+  /* Bottom bar */
+  .bottom-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 56px 28px;
+  }
+  .handle {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 18px;
+    color: #666666;
+    opacity: 0.4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .slide-indicator {
+    position: absolute;
+    bottom: 28px;
+    right: 56px;
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 16px;
+    color: #666666;
+    opacity: 0.4;
+  }
+  .swipe {
+    position: absolute;
+    bottom: 28px;
+    right: 56px;
+    font-size: 32px;
+    color: #E8652B;
+    opacity: 0.5;
+  }
+  /* Layout wrapper */
+  .frame {
+    width: 1080px;
+    height: 1350px;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+</head>
+<body>
+  <div class="sunburst"></div>
+  <div class="frame">
+    <div class="top-bar">
+      <div class="handle-top">{{handle}}</div>
+    </div>
+    <div class="title-bar">
+      <div class="title-text">{{title}}</div>
+    </div>
+    <div class="body-card">
+      <div class="section" id="role-section">
+        <div class="section-label"># ROLE</div>
+        <div class="section-body">{{role}}</div>
+      </div>
+      <div class="section" id="task-section">
+        <div class="section-label"># TASK</div>
+        <div class="section-body">{{task}}</div>
+      </div>
+      <div class="section" id="steps-section">
+        <div class="section-label"># STEPS</div>
+        <div class="section-body steps-list">{{steps}}</div>
+      </div>
+      <div class="section" id="rules-section">
+        <div class="section-label"># RULES</div>
+        <div class="section-body rules-list">{{rules}}</div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div class="handle">{{handle}}</div>
+      <div class="slide-indicator" id="slide-indicator">{{promptNumber}} / {{totalSlides}}</div>
+    </div>
+  </div>
+
+  <script>
+    // Auto-size body text based on content length
+    const sections = document.querySelectorAll('.section-body');
+    let totalLen = 0;
+    sections.forEach(s => { totalLen += s.textContent.length; });
+
+    let fontSize = 28;
+    if (totalLen > 900) fontSize = 26;
+    else if (totalLen > 700) fontSize = 27;
+    else if (totalLen < 300) fontSize = 30;
+
+    sections.forEach(s => {
+      s.style.fontSize = fontSize + 'px';
+      // Also update step/rule item children
+      const items = s.querySelectorAll('.step-text, .rule-text, .step-num, .rule-bullet');
+      items.forEach(item => { item.style.fontSize = fontSize + 'px'; });
+    });
+
+    // Hide empty sections
+    document.querySelectorAll('.section').forEach(sec => {
+      const body = sec.querySelector('.section-body');
+      if (!body || !body.textContent.trim()) {
+        sec.style.display = 'none';
+      }
+    });
+
+    // Hide slide indicator if no number data
+    const indicator = document.getElementById('slide-indicator');
+    if (!indicator.textContent.trim() || indicator.textContent.includes('/')) {
+      // Check if both sides are empty
+      const parts = indicator.textContent.split('/');
+      if (parts[0].trim() === '' && parts[1].trim() === '') {
+        indicator.style.display = 'none';
+      }
+    }
+
+    // Title bar auto-size
+    const titleText = document.querySelector('.title-text');
+    if (titleText) {
+      const len = titleText.textContent.length;
+      if (len < 20) titleText.style.fontSize = '48px';
+      else if (len < 30) titleText.style.fontSize = '42px';
+      else if (len < 40) titleText.style.fontSize = '36px';
+      else titleText.style.fontSize = '30px';
+    }
+  </script>
+</body>
+</html>

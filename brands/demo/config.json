@@ -1,0 +1,28 @@
+{
+  "name": "demo",
+  "handle": "@demo",
+  "colors": {
+    "hookBackground": "#E8652B",
+    "contentBackground": "#F5F0EB",
+    "ctaBackground": "#E8652B",
+    "textPrimary": "#1A1A1A",
+    "textSecondary": "#5D5D5D",
+    "accent": "#E8652B",
+    "highlight2": "#3DDFD0",
+    "hookHighlight": "#F5F0EB",
+    "ctaText": "#1A1A1A"
+  },
+  "fonts": {
+    "headline": "Anton",
+    "cta": "Playfair Display",
+    "body": "Inter",
+    "small": "JetBrains Mono"
+  },
+  "layout": {
+    "width": 1080,
+    "height": 1350,
+    "padding": 80,
+    "cornerRadius": 24
+  },
+  "postiz": {}
+}

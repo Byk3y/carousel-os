@@ -1,0 +1,27 @@
+{
+  "name": "carousel-os",
+  "version": "0.1.0",
+  "description": "A local AI-agent workspace for generating and publishing branded social carousels.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "demo": "node examples/basic-carousel.js",
+    "postiz:discover": "node src/postiz-discover.js",
+    "post": "node src/postiz-post.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "carousel",
+    "social-media",
+    "ai-agents",
+    "claude-code",
+    "codex",
+    "cursor",
+    "postiz"
+  ],
+  "dependencies": {
+    "puppeteer": "^24.40.0"
+  },
+  "devDependencies": {}
+}

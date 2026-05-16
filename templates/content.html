@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family={{fontHeadline}}:wght@400;500;700&family={{fontBody}}:wght@400;500;700&family={{fontSmall}}&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: {{textPrimary}};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: '{{fontBody}}', sans-serif;
+  }
+  .card {
+    width: 1020px;
+    height: 1290px;
+    background: {{contentBackground}};
+    border-radius: {{cornerRadius}}px;
+    padding: 48px 56px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Decorative circuit lines */
+  .decor-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    overflow: hidden;
+  }
+  .decor-bg svg {
+    width: 100%;
+    height: 100%;
+  }
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .handle-top {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 20px;
+    color: {{textSecondary}};
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .slide-number {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 24px;
+    color: {{textSecondary}};
+    opacity: 0.5;
+    font-weight: 700;
+  }
+  .label {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 24px;
+    color: {{accent}};
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .headline {
+    font-family: '{{fontHeadline}}', sans-serif;
+    font-weight: 400;
+    font-size: 110px;
+    color: {{textPrimary}};
+    line-height: 0.95;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .headline .highlight {
+    color: {{accent}};
+  }
+  .body-text {
+    font-family: '{{fontBody}}', sans-serif;
+    font-size: 34px;
+    font-weight: 500;
+    color: {{textPrimary}};
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    position: relative;
+    z-index: 1;
+  }
+  /* Code block */
+  .code-block {
+    background: #2A2A2A;
+    border-radius: 16px;
+    padding: 28px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .code-dots {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .code-dots span {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+  .code-dots .red { background: #FF5F57; }
+  .code-dots .yellow { background: #FFBD2E; }
+  .code-dots .green { background: #28C840; }
+  .code-text {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 24px;
+    color: #E0E0E0;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .code-text .prompt {
+    color: {{accent}};
+  }
+  .code-text .success {
+    color: #28C840;
+  }
+  /* Main content area — distributes space evenly */
+  .content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 36px;
+    padding: 16px 0;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-top: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .handle {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 18px;
+    color: {{textSecondary}};
+    opacity: 0.4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .swipe {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 36px;
+    color: {{accent}};
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- Decorative background pattern -->
+    <div class="decor-bg">
+      <svg viewBox="0 0 1020 1290" xmlns="http://www.w3.org/2000/svg">
+        <line x1="200" y1="0" x2="200" y2="400" stroke="currentColor" stroke-width="1"/>
+        <line x1="200" y1="400" x2="500" y2="400" stroke="currentColor" stroke-width="1"/>
+        <line x1="500" y1="400" x2="500" y2="200" stroke="currentColor" stroke-width="1"/>
+        <line x1="800" y1="0" x2="800" y2="300" stroke="currentColor" stroke-width="1"/>
+        <line x1="800" y1="300" x2="600" y2="300" stroke="currentColor" stroke-width="1"/>
+        <circle cx="200" cy="400" r="4" fill="currentColor"/>
+        <circle cx="500" cy="400" r="4" fill="currentColor"/>
+        <circle cx="800" cy="300" r="4" fill="currentColor"/>
+        <line x1="100" y1="900" x2="100" y2="1290" stroke="currentColor" stroke-width="1"/>
+        <line x1="100" y1="900" x2="400" y2="900" stroke="currentColor" stroke-width="1"/>
+        <line x1="700" y1="800" x2="700" y2="1100" stroke="currentColor" stroke-width="1"/>
+        <line x1="700" y1="1100" x2="920" y2="1100" stroke="currentColor" stroke-width="1"/>
+        <circle cx="100" cy="900" r="4" fill="currentColor"/>
+        <circle cx="700" cy="1100" r="4" fill="currentColor"/>
+        <line x1="900" y1="600" x2="900" y2="800" stroke="currentColor" stroke-width="1"/>
+        <circle cx="900" cy="600" r="4" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <div class="top-row">
+      <div class="handle-top">{{handle}}</div>
+      <div class="slide-number">{{number}}</div>
+    </div>
+    <div class="content-area">
+      <div>
+        <div class="label">{{label}}</div>
+        <div class="headline">{{headline}}</div>
+      </div>
+      <div class="body-text">{{body}}</div>
+      {{codeBlock}}
+    </div>
+    <div class="card-footer">
+      <div class="handle">{{handle}}</div>
+      <div class="swipe">↗</div>
+    </div>
+  </div>
+
+  <script>
+    const headline = document.querySelector('.headline');
+    const body = document.querySelector('.body-text');
+    const codeBlock = document.querySelector('.code-block');
+    const hLen = headline.textContent.length;
+    const bLen = body.textContent.length;
+    const hasCode = !!codeBlock;
+
+    // Headline sizing — fill the space boldly
+    if (hasCode) {
+      // Smaller headlines when code block is present to leave room
+      if (hLen < 15) headline.style.fontSize = '100px';
+      else if (hLen < 25) headline.style.fontSize = '88px';
+      else if (hLen < 40) headline.style.fontSize = '76px';
+      else if (hLen < 60) headline.style.fontSize = '64px';
+      else headline.style.fontSize = '54px';
+    } else {
+      // No code block — headline can be massive
+      if (hLen < 15) headline.style.fontSize = '140px';
+      else if (hLen < 25) headline.style.fontSize = '120px';
+      else if (hLen < 40) headline.style.fontSize = '100px';
+      else if (hLen < 55) headline.style.fontSize = '88px';
+      else if (hLen < 75) headline.style.fontSize = '76px';
+      else if (hLen < 100) headline.style.fontSize = '66px';
+      else headline.style.fontSize = '56px';
+    }
+
+    // Body sizing
+    if (bLen < 60) body.style.fontSize = '46px';
+    else if (bLen < 120) body.style.fontSize = '40px';
+    else if (bLen < 200) body.style.fontSize = '36px';
+    else if (bLen < 300) body.style.fontSize = '32px';
+    else body.style.fontSize = '28px';
+  </script>
+</body>
+</html>
