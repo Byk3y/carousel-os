@@ -13,16 +13,19 @@ git clone https://github.com/Byk3y/carousel-os
 cd carousel-os
 npm install
 cp .env.example .env
+npm run init
 npm run demo
 ```
 
-Then open the repo in your AI coding agent and ask:
+The init command creates a local brand folder. You can also let your agent drive setup:
 
 ```text
-Set up Carousel OS for my brand.
+Initialize Carousel OS for my brand.
 My website is https://example.com.
 I want to make carousels about AI automation for founders.
 ```
+
+If you have a website, paste it. Carousel OS records it as a brand source, and your agent can inspect it to refine the design system. If you do not have a website, init asks for name, handle, topics, tone, carousel types, and visual style.
 
 ## What It Does
 
@@ -37,6 +40,32 @@ I want to make carousels about AI automation for founders.
 
 ```text
 brand system -> slide JSON -> HTML templates -> PNGs -> optional Postiz publishing
+```
+
+## Initialization
+
+Interactive:
+
+```bash
+npm run init
+```
+
+Agent/non-interactive:
+
+```bash
+npm run init -- --yes --brand "Acme AI" --handle "@acme" --topics "AI automations" --types "tutorials and launches"
+```
+
+This writes:
+
+```text
+brands/<brand>/
+  DESIGN-SYSTEM.md
+  SETUP.md
+  brand-sources.md
+  config.json
+  logo.svg
+input/images/<brand>/
 ```
 
 ## Postiz

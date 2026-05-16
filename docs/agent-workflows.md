@@ -2,12 +2,30 @@
 
 Carousel OS is designed to be operated by AI coding agents.
 
+## Universal Prompt
+
+```text
+Read AGENTS.md and initialize Carousel OS for my brand.
+```
+
+The agent can either ask setup questions and write files directly, or run:
+
+```bash
+npm run init
+```
+
+For non-interactive setup, agents can pass flags:
+
+```bash
+npm run init -- --yes --brand "Acme AI" --handle "@acme" --website "https://example.com" --topics "AI automation" --tone "direct and practical"
+```
+
 ## Claude Code
 
 Open the repo and ask Claude:
 
 ```text
-Set up Carousel OS for my brand.
+Initialize Carousel OS for my brand.
 ```
 
 Claude should follow `CLAUDE.md`.
@@ -29,9 +47,3 @@ Open the folder in Cursor. The rule at `.cursor/rules/carousel-os.mdc` tells Cur
 ## Antigravity
 
 Open the folder in Antigravity and point the agent to `AGENTS.md`.
-
-## Universal Prompt
-
-```text
-Read AGENTS.md and set up Carousel OS for my brand.
-```

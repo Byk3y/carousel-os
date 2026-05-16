@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "init": "node src/init.js",
     "demo": "node examples/basic-carousel.js",
     "postiz:discover": "node src/postiz-discover.js",
     "post": "node src/postiz-post.js",

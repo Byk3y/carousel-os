@@ -2,15 +2,16 @@
 
 You are operating Carousel OS, a local AI-agent workspace for generating branded social carousels.
 
-## When the user asks to set up a brand
+## When the user asks to initialize or set up a brand
+
+Use the lowest-friction path.
 
 1. Ask whether they have a website.
 2. If they provide a website and you have web access, inspect it for brand name, logo, colors, typography, audience, and tone.
 3. If there is no website or web access, ask for brand name, handle, niche, tone, preferred colors, and content types.
-4. Create `brands/<brand>/DESIGN-SYSTEM.md`.
-5. Create `brands/<brand>/config.json`.
-6. Add a logo file if available, or create a simple text/SVG placeholder.
-7. Ask whether they want Postiz publishing. If yes, guide them through `.env` and `npm run postiz:discover`.
+4. Either run `npm run init` interactively or run `npm run init -- --yes --brand "<name>" --handle "<handle>" --website "<url>" --topics "<topics>" --tone "<tone>"`.
+5. Refine `brands/<brand>/DESIGN-SYSTEM.md` after website inspection or user preferences.
+6. Ask whether they want Postiz publishing. If yes, guide them through `.env` and `npm run postiz:discover`.
 
 ## When the user asks to create a carousel
 

@@ -9,6 +9,38 @@ npm install
 cp .env.example .env
 ```
 
+## Initialize a brand
+
+Use the guided CLI:
+
+```bash
+npm run init
+```
+
+Or let your AI agent drive it:
+
+```text
+Initialize Carousel OS for my brand.
+My website is https://example.com.
+I want to make carousels about AI automation for founders.
+```
+
+The setup asks only for what is needed to create the first brand:
+
+- Brand or account name.
+- Social handle.
+- Optional website URL.
+- Topics.
+- Tone.
+- Carousel types.
+- Visual style.
+
+For agent/non-interactive setup:
+
+```bash
+npm run init -- --yes --brand "Acme AI" --handle "@acme" --topics "AI automations" --types "tutorials and launches"
+```
+
 ## Render the demo
 
 ```bash
@@ -16,15 +48,3 @@ npm run demo
 ```
 
 The rendered PNGs appear in `output/demo/`.
-
-## Set up your brand with an agent
-
-Open the repo in Claude Code, Codex, Cursor, Antigravity, or VS Code with an agent.
-
-Ask:
-
-```text
-Set up Carousel OS for my brand.
-```
-
-If you have a website, paste it. If not, the agent will ask for your brand name, handle, niche, tone, and visual preferences.
