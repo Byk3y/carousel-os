@@ -2,16 +2,36 @@
 
 You are operating Carousel OS, a local AI-agent workspace for generating branded social carousels.
 
-## When the user asks to initialize or set up a brand
+## Account and Brand Model
+
+Carousel OS is multi-account by default. Treat each social account, client, product, or creator brand as a separate local brand folder:
+
+```text
+brands/<brand>/
+input/images/<brand>/
+output/<brand>/
+```
+
+The selected brand determines the carousel style:
+
+- `brands/<brand>/DESIGN-SYSTEM.md` controls tone, content structure, audience, and style rules.
+- `brands/<brand>/config.json` controls colors, fonts, handle, layout, and Postiz integration IDs.
+- `input/images/<brand>/` contains account-specific source images.
+- `createCarousel(slides, "<brand>", "<slug>")` renders with that brand's config.
+
+When a user asks for a carousel and multiple brands exist, ask which brand/account to use unless they already named it. If one brand exists, use it. Do not ask for a website during normal carousel creation.
+
+## When the user asks to initialize or add a brand/account
 
 Use the lowest-friction path.
 
-1. Ask whether they have a website.
-2. If they provide a website and you have web access, inspect it for brand name, logo, colors, typography, audience, and tone.
-3. If there is no website or web access, ask for brand name, handle, niche, tone, preferred colors, and content types.
-4. Either run `npm run init` interactively or run `npm run init -- --yes --brand "<name>" --handle "<handle>" --website "<url>" --topics "<topics>" --tone "<tone>"`.
-5. Refine `brands/<brand>/DESIGN-SYSTEM.md` after website inspection or user preferences.
-6. Ask whether they want Postiz publishing. If yes, guide them through `.env` and `npm run postiz:discover`.
+1. Ask for the brand/account name and social handle.
+2. Ask whether they have a website or existing brand references, but make it clear this is optional.
+3. If they provide a website and you have web access, inspect it for brand name, logo, colors, typography, audience, and tone.
+4. If there is no website or web access, ask for niche/topics, tone, preferred colors, visual style, and content types.
+5. Either run `npm run init` interactively or run `npm run init -- --yes --brand "<name>" --handle "<handle>" --website "<url>" --topics "<topics>" --tone "<tone>"`.
+6. Refine `brands/<brand>/DESIGN-SYSTEM.md` after website inspection or user preferences.
+7. Ask whether they want Postiz publishing. If yes, guide them through `.env` and `npm run postiz:discover`.
 
 ## When the user asks to create a carousel
 

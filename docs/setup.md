@@ -20,7 +20,7 @@ cp .env.example .env
 npm run init
 ```
 
-## Initialize a Brand
+## Initialize a Brand or Account
 
 Use the guided CLI:
 
@@ -31,12 +31,12 @@ npm run init
 Or let your AI agent drive it:
 
 ```text
-Initialize Carousel OS for my brand.
-My website is https://example.com.
+Add a new Carousel OS account for Acme AI.
+Website, if useful: https://example.com.
 I want to make carousels about AI automation for founders.
 ```
 
-The setup asks only for what is needed to create the first brand:
+The setup asks only for what is needed to create the brand/account:
 
 - Brand or account name.
 - Social handle.
@@ -50,6 +50,19 @@ For agent/non-interactive setup:
 
 ```bash
 npm run init -- --yes --brand "Acme AI" --handle "@acme" --topics "AI automations" --types "tutorials and launches"
+```
+
+Run `npm run init` again for each additional account. Each account gets its own:
+
+- `brands/<brand>/DESIGN-SYSTEM.md`
+- `brands/<brand>/config.json`
+- `input/images/<brand>/`
+- `output/<brand>/`
+
+When creating a carousel, name the account:
+
+```text
+Make a carousel for Acme AI about onboarding AI agents.
 ```
 
 ## Render the Demo
