@@ -32,6 +32,10 @@ test('copyTemplate creates a usable Carousel OS project', () => {
   assert.equal(fs.existsSync(path.join(target, 'src', 'carousel.js')), true);
   assert.equal(fs.existsSync(path.join(target, 'templates', 'hook.html')), true);
   assert.equal(fs.existsSync(path.join(target, 'brands', 'demo', 'config.json')), true);
+  assert.equal(fs.existsSync(path.join(target, 'input', 'README.md')), true);
+  assert.equal(fs.existsSync(path.join(target, 'input', 'images', 'demo', 'README.md')), true);
+  assert.equal(fs.existsSync(path.join(target, '.gitignore')), true);
+  assert.equal(fs.existsSync(path.join(target, 'gitignore')), false);
   assert.equal(fs.existsSync(path.join(target, '.claude', 'skills', 'carousel-os', 'SKILL.md')), true);
 });
 

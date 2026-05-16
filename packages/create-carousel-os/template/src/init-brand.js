@@ -108,6 +108,31 @@ function brandSourcesMarkdown(input) {
 `;
 }
 
+function imageFolderReadme(input, brandSlug) {
+  return `# ${input.brandName} Images
+
+Use this folder for assets that belong to this account only.
+
+Recommended files:
+
+- \`hook-<topic>.png\` - generated or supplied hook images for \`hook-composite\` slides.
+- \`cta-<offer>.jpg\` - CTA background images for \`cta\` slides.
+- \`screenshot-<source>.png\` - source screenshots or product screenshots.
+- \`reference-<name>.jpg\` - visual references for the agent.
+
+Use repo-relative paths in slide JSON:
+
+\`\`\`js
+{
+  type: 'hook-composite',
+  label: 'HOOK',
+  headline: 'A strong **carousel hook** goes here.',
+  imagePath: './input/images/${brandSlug}/hook-example.png'
+}
+\`\`\`
+`;
+}
+
 function config(input, brandSlug) {
   return {
     name: brandSlug,
@@ -159,14 +184,18 @@ export function buildBrandFiles(input) {
 
 export function writeBrandFiles(brandFiles, { rootDir = process.cwd(), overwrite = false } = {}) {
   const brandDir = path.join(rootDir, 'brands', brandFiles.brandSlug);
+  const imageDir = path.join(rootDir, 'input', 'images', brandFiles.brandSlug);
 
   if (fs.existsSync(brandDir) && !overwrite) {
     throw new Error(`Brand folder already exists: ${brandDir}`);
   }
 
   fs.mkdirSync(brandDir, { recursive: true });
-  fs.mkdirSync(path.join(rootDir, 'input', 'images', brandFiles.brandSlug), { recursive: true });
-  fs.writeFileSync(path.join(rootDir, 'input', 'images', brandFiles.brandSlug, '.gitkeep'), '');
+  fs.mkdirSync(imageDir, { recursive: true });
+  fs.writeFileSync(path.join(imageDir, '.gitkeep'), '');
+  fs.writeFileSync(path.join(imageDir, 'README.md'), imageFolderReadme({
+    brandName: brandFiles.files['config.json'].name
+  }, brandFiles.brandSlug));
 
   for (const [fileName, content] of Object.entries(brandFiles.files)) {
     const filePath = path.join(brandDir, fileName);

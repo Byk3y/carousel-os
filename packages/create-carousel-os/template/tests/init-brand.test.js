@@ -65,5 +65,6 @@ test('writeBrandFiles writes expected files and protects existing brands by defa
   assert.equal(fs.existsSync(path.join(result.brandDir, 'DESIGN-SYSTEM.md')), true);
   assert.equal(fs.existsSync(path.join(result.brandDir, 'config.json')), true);
   assert.equal(fs.existsSync(path.join(result.brandDir, 'logo.svg')), true);
+  assert.equal(fs.existsSync(path.join(tempDir, 'input', 'images', 'acme-ai', 'README.md')), true);
   assert.throws(() => writeBrandFiles(files, { rootDir: tempDir }), /already exists/);
 });

@@ -16,7 +16,7 @@ The selected brand determines the carousel style:
 
 - `brands/<brand>/DESIGN-SYSTEM.md` controls tone, content structure, audience, and style rules.
 - `brands/<brand>/config.json` controls colors, fonts, handle, layout, and Postiz integration IDs.
-- `input/images/<brand>/` contains account-specific source images.
+- `input/images/<brand>/` contains account-specific hook, content, CTA, screenshot, and reference images.
 - `createCarousel(slides, "<brand>", "<slug>")` renders with that brand's config.
 
 When a user asks for a carousel and multiple brands exist, ask which brand/account to use unless they already named it. If one brand exists, use it. Do not ask for a website during normal carousel creation.
@@ -38,13 +38,19 @@ Use the lowest-friction path.
 1. Read `brands/HOOK-SYSTEM.md`.
 2. Read `brands/<brand>/DESIGN-SYSTEM.md`.
 3. Read `brands/<brand>/config.json`.
-4. Check `input/images/<brand>/` for usable images.
-5. Choose the slide count based on the content:
+4. Check `input/images/<brand>/` for usable images and read `input/README.md` if present.
+5. Use images by purpose:
+   - Hook images (`hook-*.png`, `hook-*.jpg`) are best for `hook-composite` slides.
+   - CTA images (`cta-*.png`, `cta-*.jpg`) are best for `cta` slides.
+   - Screenshots and product images are best for `screenshot-slide` or `content-image`.
+   - Reference images are for visual direction; do not place them directly unless appropriate.
+6. If no suitable hook image exists and you are running in Codex or another agent with image-generation access, generate a strong hook image, save it in `input/images/<brand>/`, then use it with `imagePath`. If image generation is unavailable, ask the user to provide an image or render text-only.
+7. Choose the slide count based on the content:
    - 2-3 slides for news, hot takes, launches, and single-stat posts.
    - 5-7 slides for tutorials, frameworks, prompt lists, and save-worthy guides.
-6. Generate slide content as JSON or a small file in `examples/`.
-7. Run the renderer with `createCarousel()`.
-8. Report the output folder.
+8. Generate slide content as JSON or a small file in `examples/`.
+9. Run the renderer with `createCarousel()`.
+10. Report the output folder.
 
 ## When the user asks to post
 

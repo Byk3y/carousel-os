@@ -4,5 +4,6 @@ node_modules/
 output/*
 !output/.gitkeep
 input/images/*/*
+!input/images/*/README.md
 !input/images/demo/.gitkeep
 npm-debug.log*

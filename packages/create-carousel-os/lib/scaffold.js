@@ -54,9 +54,12 @@ function copyRecursive(sourceDir, targetDir, baseDir = sourceDir) {
       fs.mkdirSync(targetPath, { recursive: true });
       copyRecursive(sourcePath, targetDir, baseDir);
     } else if (entry.isFile()) {
-      fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-      fs.copyFileSync(sourcePath, targetPath);
-      fs.chmodSync(targetPath, fs.statSync(sourcePath).mode);
+      const finalTargetPath = relativePath === 'gitignore'
+        ? path.join(targetDir, '.gitignore')
+        : targetPath;
+      fs.mkdirSync(path.dirname(finalTargetPath), { recursive: true });
+      fs.copyFileSync(sourcePath, finalTargetPath);
+      fs.chmodSync(finalTargetPath, fs.statSync(sourcePath).mode);
     }
   }
 }
