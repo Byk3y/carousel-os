@@ -59,4 +59,20 @@ Use the lowest-friction path.
 3. Run `npm run post -- <brand> instagram` or `npm run post -- <brand> tiktok`.
 4. For TikTok, include a title, keyword-rich caption, and exactly 5 hashtags.
 
+## Self-Improvement Loop
+
+When the user corrects a mistake or a workflow problem repeats, improve the project instructions so the same mistake is less likely next time.
+
+1. Read `docs/self-improvement.md`.
+2. Identify whether the lesson is global, brand-specific, template-specific, input-asset-specific, setup-related, or Postiz-related.
+3. Update the narrowest durable file:
+   - Global workflow: `AGENTS.md` and `CLAUDE.md`
+   - Brand style: `brands/<brand>/DESIGN-SYSTEM.md`
+   - Brand assets: `input/images/<brand>/README.md`
+   - Templates: `docs/templates.md`
+   - Setup/troubleshooting: `docs/setup.md` or `docs/troubleshooting.md`
+   - Posting: `docs/postiz.md`
+4. Do not store secrets, private API keys, volatile facts, or one-off task details.
+5. Verify with a relevant test, render, dry run, or docs check.
+
 Never commit `.env`, real API keys, or generated production output.

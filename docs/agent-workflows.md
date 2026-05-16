@@ -20,6 +20,17 @@ For non-interactive setup, agents can pass flags:
 npm run init -- --yes --brand "Acme AI" --handle "@acme" --website "https://example.com" --topics "AI automation" --tone "direct and practical"
 ```
 
+## Self-Improvement
+
+When an agent makes a repeatable mistake, ask it to improve the workspace:
+
+```text
+Review this mistake and update Carousel OS so it is less likely to happen again.
+Use the narrowest durable file. Do not store secrets or one-off task details.
+```
+
+Agents should follow `docs/self-improvement.md`.
+
 ## Claude Code
 
 Open the repo and ask Claude:

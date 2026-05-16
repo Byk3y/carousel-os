@@ -17,6 +17,7 @@ Use this skill when the user wants to initialize a Carousel OS brand, turn a top
 6. If the current agent can generate images, it may create missing hook or CTA images, save them in `input/images/<brand>/`, and use them through `imagePath`.
 7. Render with `createCarousel()` from `src/carousel.js`.
 8. For publishing, follow `docs/postiz.md` and never expose `.env` secrets.
+9. If a user correction reveals a durable workflow gap, follow `docs/self-improvement.md` and update the narrowest relevant instruction file.
 
 ## Useful References
 
@@ -26,6 +27,7 @@ Use this skill when the user wants to initialize a Carousel OS brand, turn a top
 - Input image workflow: `input/README.md`
 - Slide templates and JSON shape: `docs/templates.md`
 - Postiz publishing: `docs/postiz.md`
+- Self-improvement loop: `docs/self-improvement.md`
 
 ## Guardrails
 
