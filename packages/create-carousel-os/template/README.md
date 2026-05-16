@@ -6,7 +6,7 @@ Carousel OS is a local AI-agent workspace for making branded social carousels. C
 
 No dashboard. No SaaS. No Canva dependency. Just your brand system, reusable HTML templates, local PNG rendering, and optional Postiz publishing.
 
-![Carousel OS demo hook slide](docs/assets/demo-hook.png)
+![Carousel OS demo hook slide](docs/assets/demo-hook.jpg)
 
 ## Quickstart
 
