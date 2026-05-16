@@ -78,7 +78,32 @@ export function buildInstagramPayload({ integrationId, caption, uploads, date = 
   };
 }
 
+function countHashtags(text) {
+  return (String(text).match(/(^|\s)#[\p{L}\p{N}_]+/gu) || []).length;
+}
+
+export function validateTikTokMetadata({ title, caption }) {
+  if (!String(title || '').trim()) {
+    throw new Error('TikTok title is required.');
+  }
+
+  if (String(title).length > 90) {
+    throw new Error('TikTok title must be 90 characters or fewer.');
+  }
+
+  if (!String(caption || '').trim()) {
+    throw new Error('TikTok caption is required.');
+  }
+
+  const hashtagCount = countHashtags(caption);
+  if (hashtagCount !== 5) {
+    throw new Error(`TikTok caption must include exactly 5 hashtags. Found ${hashtagCount}.`);
+  }
+}
+
 export function buildTikTokPhotoPayload({ integrationId, title, caption, uploads, date = new Date().toISOString() }) {
+  validateTikTokMetadata({ title, caption });
+
   return {
     type: 'schedule',
     date,

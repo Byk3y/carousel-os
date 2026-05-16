@@ -58,8 +58,10 @@ Render a carousel first, then run:
 
 ```bash
 npm run post -- demo instagram
-npm run post -- demo tiktok
+npm run post -- demo tiktok -- --title "AI carousel workflow" --caption "AI carousel workflow for founders. #aitools #contentcreation #socialmedia #founders #carousel"
 ```
+
+TikTok captions must include exactly 5 hashtags. The title must be 90 characters or fewer.
 
 TikTok photo-mode posts use `content_posting_method: "UPLOAD"` by default so the post is sent to the TikTok inbox for manual review.
 

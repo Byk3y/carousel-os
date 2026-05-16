@@ -1,9 +1,27 @@
 {
   "name": "create-carousel-os",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Create a local Carousel OS workspace for AI-agent-driven carousel generation.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Byk3y/carousel-os.git",
+    "directory": "packages/create-carousel-os"
+  },
+  "homepage": "https://github.com/Byk3y/carousel-os#readme",
+  "bugs": {
+    "url": "https://github.com/Byk3y/carousel-os/issues"
+  },
+  "keywords": [
+    "carousel",
+    "social-media",
+    "ai-agents",
+    "claude-code",
+    "codex",
+    "cursor",
+    "postiz"
+  ],
   "bin": {
     "create-carousel-os": "bin/create-carousel-os.js"
   },
@@ -11,6 +29,7 @@
     "bin/",
     "lib/",
     "template/",
+    "LICENSE",
     "README.md"
   ],
   "engines": {

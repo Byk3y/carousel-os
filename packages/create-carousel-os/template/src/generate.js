@@ -16,6 +16,15 @@ function toDataUri(filePath) {
   return `data:${mime};base64,${data.toString('base64')}`;
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 /**
  * Parse highlight markers in text:
  *   **text** → <span class="highlight">text</span>     (primary accent — usually orange)
@@ -24,7 +33,7 @@ function toDataUri(filePath) {
  * keyword-highlight pattern from viral 2-3 slide carousels.
  */
 function parseHighlights(text) {
-  return text
+  return escapeHtml(text)
     .replace(/\*\*(.+?)\*\*/g, '<span class="highlight">$1</span>')
     .replace(/__(.+?)__/g, '<span class="highlight-2">$1</span>');
 }
@@ -80,11 +89,11 @@ export function buildSlideHtml(slide, brand) {
     handle: brand.handle,
     logoSvg: logoSvg,
     // Slide content
-    label: slide.label || '',
+    label: slide.label ? escapeHtml(slide.label) : '',
     headline: slide.headline ? parseHighlights(slide.headline) : '',
     subtitle: slide.subtitle ? parseHighlights(slide.subtitle) : '',
     body: slide.body ? parseHighlights(slide.body) : '',
-    number: slide.number !== undefined ? String(slide.number) : '',
+    number: slide.number !== undefined ? escapeHtml(slide.number) : '',
     // Image (embedded as base64 data URI for reliable Puppeteer rendering)
     imagePath: slide.imagePath ? toDataUri(path.resolve(slide.imagePath)) : '',
     // CTA template: conditionally show image or solid background
@@ -102,16 +111,16 @@ export function buildSlideHtml(slide, brand) {
     // Tier card color (for tier-card template, one color per tier)
     tierColor: slide.tierColor || brand.colors.accent,
     // Prompt slide: structured prompt sections
-    title: slide.title || '',
-    promptNumber: slide.promptNumber || '',
-    totalSlides: slide.totalSlides || '',
-    role: slide.role || '',
-    task: slide.task || '',
+    title: slide.title ? escapeHtml(slide.title) : '',
+    promptNumber: slide.promptNumber ? escapeHtml(slide.promptNumber) : '',
+    totalSlides: slide.totalSlides ? escapeHtml(slide.totalSlides) : '',
+    role: slide.role ? escapeHtml(slide.role) : '',
+    task: slide.task ? escapeHtml(slide.task) : '',
     steps: Array.isArray(slide.steps)
-      ? slide.steps.map((s, i) => `<div class="step-item"><span class="step-num">${i + 1}.</span><span class="step-text">${s}</span></div>`).join('')
+      ? slide.steps.map((s, i) => `<div class="step-item"><span class="step-num">${i + 1}.</span><span class="step-text">${escapeHtml(s)}</span></div>`).join('')
       : '',
     rules: Array.isArray(slide.rules)
-      ? slide.rules.map(r => `<div class="rule-item"><span class="rule-bullet">–</span><span class="rule-text">${r}</span></div>`).join('')
+      ? slide.rules.map(r => `<div class="rule-item"><span class="rule-bullet">–</span><span class="rule-text">${escapeHtml(r)}</span></div>`).join('')
       : ''
   };
 

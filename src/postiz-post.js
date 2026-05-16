@@ -9,11 +9,21 @@ import {
 
 loadEnv();
 
-const brandName = process.argv[2] || process.env.DEFAULT_BRAND || 'demo';
-const platform = process.argv[3] || 'instagram';
+function argValue(name) {
+  const index = process.argv.indexOf(name);
+  return index === -1 ? '' : process.argv[index + 1] || '';
+}
+
+function positionalArgs() {
+  return process.argv.slice(2).filter(arg => !arg.startsWith('--'));
+}
+
+const [brandArg, platformArg] = positionalArgs();
+const brandName = brandArg || process.env.DEFAULT_BRAND || 'demo';
+const platform = platformArg || 'instagram';
 const outputBase = process.env.DEFAULT_OUTPUT_DIR || 'output';
-const caption = process.env.POST_CAPTION || 'Generated with Carousel OS.';
-const title = process.env.POST_TITLE || 'AI carousel workflow';
+const caption = argValue('--caption') || process.env.POST_CAPTION || 'Generated with Carousel OS.';
+const title = argValue('--title') || process.env.POST_TITLE || '';
 
 const brandConfigPath = path.resolve('brands', brandName, 'config.json');
 const brand = JSON.parse(fs.readFileSync(brandConfigPath, 'utf8'));

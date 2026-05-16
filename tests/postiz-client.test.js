@@ -40,3 +40,22 @@ test('buildTikTokPhotoPayload sets upload photo-mode requirements', () => {
   assert.equal(settings.privacy_level, 'SELF_ONLY');
   assert.equal(settings.title, 'AI carousel workflow');
 });
+
+
+test('buildTikTokPhotoPayload rejects missing title', () => {
+  assert.throws(() => buildTikTokPhotoPayload({
+    integrationId: 'tt-123',
+    title: '',
+    caption: 'AI tools for founders. #aitools #founders #automation #contentcreation #carousel',
+    uploads: [{ id: 'img-1', path: 'https://uploads.postiz.com/1.png' }]
+  }), /TikTok title/);
+});
+
+test('buildTikTokPhotoPayload requires exactly 5 hashtags in caption', () => {
+  assert.throws(() => buildTikTokPhotoPayload({
+    integrationId: 'tt-123',
+    title: 'AI carousel workflow',
+    caption: 'AI tools for founders. #aitools #founders',
+    uploads: [{ id: 'img-1', path: 'https://uploads.postiz.com/1.png' }]
+  }), /exactly 5 hashtags/);
+});

@@ -2,13 +2,20 @@
 
 ## Puppeteer install fails
 
-Run:
+Carousel OS uses `puppeteer-core`, so `npm install` should not download Chrome. If install still fails, make sure your package is current:
 
 ```bash
 npm install
 ```
 
-If Chrome download fails, check your network and npm configuration.
+If an older generated project still uses `puppeteer`, skip the browser download and use your system Chrome:
+
+```bash
+PUPPETEER_SKIP_DOWNLOAD=true npm install
+export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+```
+
+If rendering fails with "Could not find Chrome", install Google Chrome or set `PUPPETEER_EXECUTABLE_PATH` to a Chromium-compatible browser.
 
 ## Fonts look wrong
 

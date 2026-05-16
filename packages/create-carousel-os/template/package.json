@@ -1,9 +1,17 @@
 {
   "name": "carousel-os",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A local AI-agent workspace for generating and publishing branded social carousels.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Byk3y/carousel-os.git"
+  },
+  "homepage": "https://github.com/Byk3y/carousel-os#readme",
+  "bugs": {
+    "url": "https://github.com/Byk3y/carousel-os/issues"
+  },
   "private": false,
   "scripts": {
     "init": "node src/init.js",
@@ -22,7 +30,7 @@
     "postiz"
   ],
   "dependencies": {
-    "puppeteer": "^24.40.0"
+    "puppeteer-core": "^24.40.0"
   },
   "devDependencies": {}
 }
