@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family={{fontBody}}:wght@400;500;700&family={{fontSmall}}&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1350px;
+    font-family: '{{fontBody}}', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+  .bg-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Inset circle in upper-right (the visual storytelling device) */
+  .inset-circle {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5), 0 0 0 3px rgba(0,0,0,0.4);
+    z-index: 3;
+    background: #000;
+  }
+  .inset-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Dark gradient at bottom for headline readability */
+  .gradient-overlay {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.95) 0%,
+      rgba(0,0,0,0.8) 30%,
+      rgba(0,0,0,0.4) 65%,
+      rgba(0,0,0,0) 100%);
+    z-index: 1;
+  }
+  .content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: {{padding}}px;
+    padding-bottom: 100px;
+    z-index: 2;
+  }
+  /* Category badge — small colored pill above headline */
+  .category-badge {
+    display: inline-block;
+    background: {{badgeColor}};
+    color: #FFFFFF;
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: 6px;
+    margin-bottom: 32px;
+    white-space: nowrap;
+  }
+  /* Big uppercase headline with multi-color highlights */
+  .headline {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 0.98;
+    text-transform: uppercase;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+  .headline .highlight {
+    color: {{accent}};
+  }
+  .headline .highlight-2 {
+    color: {{highlight2}};
+  }
+  /* Footer with handle + swipe indicator */
+  .footer {
+    position: absolute;
+    bottom: 32px;
+    left: {{padding}}px;
+    right: {{padding}}px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+  }
+  .handle {
+    font-family: '{{fontSmall}}', monospace;
+    font-size: 20px;
+    color: #FFFFFF;
+    opacity: 0.8;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .swipe {
+    font-size: 32px;
+    color: #FFFFFF;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+  <img class="bg-image" src="{{imagePath}}">
+  {{insetTag}}
+  <div class="gradient-overlay"></div>
+  <div class="content">
+    <div class="category-badge">{{label}}</div>
+    <div class="headline">{{headline}}</div>
+  </div>
+  <div class="footer">
+    <div class="handle">{{handle}}</div>
+    <div class="swipe">→</div>
+  </div>
+
+  <script>
+    // Auto-size headline based on character count (matches viral carousel proportions)
+    const headline = document.querySelector('.headline');
+    const len = headline.textContent.length;
+    if (len < 30) headline.style.fontSize = '130px';
+    else if (len < 50) headline.style.fontSize = '110px';
+    else if (len < 70) headline.style.fontSize = '92px';
+    else if (len < 95) headline.style.fontSize = '78px';
+    else if (len < 120) headline.style.fontSize = '68px';
+    else headline.style.fontSize = '58px';
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+---
+description: Carousel OS workflow for generating branded social carousels
+alwaysApply: true
+---
+
+Follow `AGENTS.md` for all Carousel OS workflows. This is a local AI-agent workspace, not a website project.
+
+When creating carousels, read the hook system, brand design system, and brand config before generating slides. Render with `createCarousel()` and report the output folder.
+
+When publishing, use Postiz only after `.env` and brand integration IDs are configured. Never expose secrets.
