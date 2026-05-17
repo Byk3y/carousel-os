@@ -1,6 +1,6 @@
 {
   "name": "create-carousel-os",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Create a local Carousel OS workspace for AI-agent-driven carousel generation.",
   "type": "module",
   "license": "MIT",
